@@ -1,0 +1,2 @@
+Clone lc-query-server found at https://github.com/linkedconnections/query-server
+The docker file needs to be in the lc-query-server root
