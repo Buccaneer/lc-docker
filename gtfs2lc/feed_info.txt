@@ -1,0 +1,2 @@
+feed_publisher_name,feed_publisher_url,feed_lang,feed_start_date,feed_end_date,feed_version
+iRail,http://hello.irail.be/,nl,20150101,20151214,1.0

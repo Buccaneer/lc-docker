@@ -1,0 +1,1 @@
+while read line ; do { echo ${line/:[A-Za-z0-9 _]\{0-10\},/,}; } done < stops.txt > stops_without_platforms.txt
