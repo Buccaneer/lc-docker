@@ -4,6 +4,6 @@
 [submodule "lc-query-mix"]
 	path = lc-query-mix
 	url = https://github.com/pietercolpaert/lc-query-mix.git
-[submodule "lc-server"]
-	path = lc-server
+[submodule "lc-server/server"]
+	path = lc-server/server
 	url = https://github.com/linkedconnections/server.js.git
