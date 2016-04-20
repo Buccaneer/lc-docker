@@ -1,7 +1,7 @@
 {
   "source" : {
     "type" : "mongodb",
-    "string" : "mongodb://192.168.99.100:28001/lc",
+    "string" : "mongodb://lc-mongodb-container:27017/lc",
     "collections" : {
       "connections" : "connections"
     }
