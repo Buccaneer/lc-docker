@@ -5,51 +5,58 @@ Repository with resources to dockerize Linked Connections.
 ## Setup
 
 ##### MongoDB
-Build
+Build the MongoDB image and run it in a container.
 ```bash
 docker build --tag buccaneer/lc-mongodb ./lc-mongodb
 ```
-Run
 ```bash
 docker run -p 28001:27017 --name lc-mongodb-container buccaneer/lc-mongodb
 ```
-Import connections
+Import the connections into the database.  Make sure to replace the --host with that of your docker machine or localhost if native.
 ```bash
 gunzip -c belgianrailconnectionsOct2015.mongojsonstream.gz | mongoimport --db lc --collection connections --host 192.168.99.100 --port 28001
 ```
-Ensure there is an index on departureTime
-```mongodb
+Ensure there is an index on departureTime. Make sure to replace the host with that of your docker machine or localhost if native.
+```bash
+mongo 192.168.99.100:28001
+```
+```bash
 db.connections.ensureIndex({departureTime:1});
 ```
 ##### Query Server
-Build
+Build the query server image and run it in a container.
 ```bash
 docker build --tag buccaneer/lc-query-server ./lc-query-server
 ```
-Run
 ```bash
 docker run -p 32777:8082 --name lc-query-server-container --link lc-mongodb-container buccaneer/lc-query-server
 ```
 
 ##### NGINX Cache
-!!CHANGE IP IN conf/nginx.conf
-Build
+__!!__ First replace the IP address in lc-cache/conf/nginx.conf on line 49 (proxy pass) with that of your docker machine or localhost.
+
+Build the nginx cache image and run it in a container.
 ```bash
 docker build --tag buccaneer/lc-cache ./lc-cache
 ```
-Run
 ```bash
-> docker run -p 32778:8081 --name lc-cache-container --link lc-query-server-container buccaneer/lc-cache
+docker run -p 32778:8081 --name lc-cache-container --link lc-query-server-container buccaneer/lc-cache
 ```
 
 ##### Query mix generator & executor
-Generate query mix
+Change directory to lc-query-mix then install dependencies.
 ```bash
-node ./lc-query-mix/bin/querymixgenerator.js > result.jsonstream
+cd lc-query-mix
 ```
-Execute the mix
 ```bash
-node ./lc-query-mix/bin/querymixexecutor.js < result.jsonstream
+npm install
+```
+Generate a query mix then execute it.
+```bash
+node ./bin/querymixgenerator.js > result.jsonstream
+```
+```bash
+node ./bin/querymixexecutor.js < result.jsonstream
 ```
 
 ## Monitoring
@@ -63,7 +70,7 @@ Run InfluxDB container
 docker run -d -p 8083:8083 -p 8086:8086 --expose 8090 --expose 8099 --name lc-influx tutum/influxdb
 ```
 
-Create account with username 'root' and password 'root'.  
+Create an account with username 'root' and password 'root'.  
 
 ##### cAdvisor
 Run cAdvisor container
