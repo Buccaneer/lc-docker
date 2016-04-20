@@ -5,6 +5,9 @@
 FROM       ubuntu:latest
 # Format: MAINTAINER Name <email@addr.ess>
 MAINTAINER buccaneer <pieterjan.vandenberghe.t6365@student.hogent.be>
+# Time zone
+ENV TZ=Europe/Brussels
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # Installation:
 # Import MongoDB public GPG key AND create a MongoDB list file
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
