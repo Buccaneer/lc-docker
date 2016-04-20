@@ -1,6 +1,6 @@
 [submodule "lc-query-server/query-server"]
 	path = lc-query-server/query-server
-	url = git@github.com:linkedconnections/query-server.git
+	url = https://github.com/pietercolpaert/linkedconnections/query-server.git
 [submodule "lc-query-mix"]
 	path = lc-query-mix
 	url = https://github.com/pietercolpaert/lc-query-mix.git
