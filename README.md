@@ -28,7 +28,7 @@ docker build --tag buccaneer/lc-query-server ./lc-query-server
 ```
 Run
 ```bash
-docker run -p 32777:8080 --name lc-query-server-container --link lc-mongodb-container buccaneer/lc-query-server
+docker run -p 32777:8082 --name lc-query-server-container --link lc-mongodb-container buccaneer/lc-query-server
 ```
 
 ##### NGINX Cache

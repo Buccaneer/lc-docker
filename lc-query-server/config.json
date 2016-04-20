@@ -1,0 +1,15 @@
+{
+  "source" : {
+    "type" : "mongodb",
+    "string" : "mongodb://192.168.99.100:28001/lc",
+    "collections" : {
+      "connections" : "connections"
+    }
+  },
+  "port" : 8082,
+  "proxy" : {
+    "port" : 80,
+    "hostname" : "",
+    "protocol" : "http"
+  }
+}
