@@ -34,6 +34,15 @@ docker build --tag buccaneer/lc-query-server ./lc-query-server
 docker run -p 8082:8082 --name lc-query-server-container --link lc-mongodb-container buccaneer/lc-query-server
 ```
 
+##### Linked Connections Server.js
+
+```bash
+docker build --tag buccaneer/lc-server ./lc-query-server
+```
+```bash
+docker run -p 8084:8084 --name lc-server-container --link lc-mongodb-container buccaneer/lc-server
+```
+
 ##### NGINX Cache
 __!!__ First replace the IP address in lc-cache/conf/nginx.conf on line 49 (proxy pass) with that of your docker machine or localhost.
 
