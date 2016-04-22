@@ -8,8 +8,8 @@
   },
   "port" : 8082,
   "proxy" : {
-    "port" : 80,
-    "hostname" : "",
+    "port" : 8082,
+    "hostname" : "localhost",
     "protocol" : "http"
   }
 }
