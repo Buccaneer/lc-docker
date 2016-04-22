@@ -10,4 +10,4 @@ COPY ./server /usr/src/app
 COPY config.json /usr/src/app/
 RUN npm install
 CMD node bin/server.js -c config.json
-EXPOSE 8082
+EXPOSE 8084
