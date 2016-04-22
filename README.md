@@ -14,22 +14,33 @@ docker run -p 28001:27017 --name lc-mongodb-container buccaneer/lc-mongodb
 ```
 Import the connections into the database.  Make sure to replace the --host with that of your docker machine or localhost if native.
 ```bash
-gunzip -c belgianrailconnectionsOct2015.mongojsonstream.gz | mongoimport --db lc --collection connections --host 192.168.99.100 --port 28001
+gunzip -c belgianrailconnectionsOct2015.mongojsonstream.gz | mongoimport --db lc --collection connections --port 28001
 ```
 Ensure there is an index on departureTime. Make sure to replace the host with that of your docker machine or localhost if native.
 ```bash
-mongo 192.168.99.100:28001
+mongo --port 28001
 ```
+
 ```bash
 db.connections.ensureIndex({departureTime:1});
 ```
+
 ##### Query Server
 Build the query server image and run it in a container.
 ```bash
 docker build --tag buccaneer/lc-query-server ./lc-query-server
 ```
 ```bash
-docker run -p 32777:8082 --name lc-query-server-container --link lc-mongodb-container buccaneer/lc-query-server
+docker run -p 8082:8082 --name lc-query-server-container --link lc-mongodb-container buccaneer/lc-query-server
+```
+
+##### Linked Connections Server.js
+
+```bash
+docker build --tag buccaneer/lc-server ./lc-query-server
+```
+```bash
+docker run -p 8084:8084 --name lc-server-container --link lc-mongodb-container buccaneer/lc-server
 ```
 
 ##### NGINX Cache
