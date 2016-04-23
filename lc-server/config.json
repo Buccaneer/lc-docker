@@ -8,7 +8,7 @@
   },
   "port" : 8084,
   "proxy" : {
-    "port" : 8084,
+    "port" : 8081,
     "hostname" : "localhost",
     "protocol" : "http"
   }
