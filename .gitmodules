@@ -7,3 +7,6 @@
 [submodule "lc-server/server"]
 	path = lc-server/server
 	url = https://github.com/linkedconnections/server.js.git
+[submodule "lc-query-load"]
+	path = lc-query-load
+	url = https://github.com/pietercolpaert/belgianrail-query-load.git
